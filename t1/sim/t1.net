@@ -1,0 +1,46 @@
+*Ngspice script
+
+.options savecurrents
+
+
+*circuit description
+
+*Independent sources
+Va 6 3 5.23061068922
+V9 3 0 0
+Id 5 4 1.01940833644m
+
+
+*dependent sources
+Gb 4 7 (1,2) 7.25561262206m
+Hc 2 5 V9 8.24424618872k
+
+*Resistances
+R1 6 1 1.01458812332k
+R2 1 7 2.08463766973k
+R3 1 2 3.01303489873k
+R4 3 2 4.03070521773k
+R5 2 4 3.06211563876k
+R6 0 8 2.03687088929k
+R7 8 5 1.00498418134k
+
+*circuit analysis control
+
+.control
+
+op
+
+echo "Operating point analysis"
+
+echo  "op_TAB"
+print all
+echo  "op_END"
+
+
+print all
+
+quit
+
+.endc
+.end
+
