@@ -1,0 +1,74 @@
+\section{Theoretical Analysis}
+\label{sec:analysis}
+
+In this section, the circuit shown in \textbf{Figure~\ref{fig:diagram_t4}} is analysed
+theoretically.
+\begin{figure}[h] \centering
+\includegraphics[width=0.95\linewidth]{diagram_t4.pdf}
+\vspace{-7cm}
+\caption{Diagram of the circuit considered for the computations and simulations.}
+\label{fig:diagram_t4}
+\end{figure}
+
+We are looking to the audio amplifier which is divided in two stages as was said and explained in the section before. The primary stage is the gain stage where the main goal is to amplify the voltage input signal. In order to achieve that we enforce a high gain. We also have a high input impedance in this stage which avoids the degration of the input signal. The second stage is the output stage which will have a low output impendance in order to allow us to connect to the speaker while minimizing signal degradation. That's why we have this second stage, because in the first one due to the high output impedance it's very difficult to connect to the speaker without having the signal degrade in the exit. Connecting these two stages we minimaze the downsides of which one. This can be seen in one of the following tables. In the output stage the gain is very close to one, meaning than there will be no amplification nor attenuation of the signal.\par  
+
+
+We as humans can only distingue frequencies between 20 Hz to 20 KHz and therefore we should chosed coupling capacitors that behave like short-circuits for these frequencies. We do that because the coupling capacitors interfere in the low cutoff frequency and consequently the bandwidth. The final values considered for the circuit parameters (as named in the above figure) were the following:
+
+\hfill
+ \parbox{1\linewidth}{
+  \centering
+  \begin{tabular}{|l|l|l|r|}
+    \hline    
+    {\bf Parameter} & {\bf Value} & {\bf Units }\\ \hline
+    \input{valores.tex}
+  \label{tab:params}
+  \end{tabular}
+  }
+\par
+
+In the following table is the operating point analysis, both for the theoretical analysis (right) and the Ngspice simulation (left), in order to make a side-by-side comparison. This also includes a flag (last row) that ensures that both BJTs are in the Forward Active Region - if everything is ok, the flag should read "ok". If any (or both) of the transistor are not in this region, the flag should read "bad". The condition considered was, for the NPN transistor: $V_{CE} > V_{BE} <=> V_{C} > V_{B}$ and for the PNP transistor: $V_{EC} > V_{EB} <=> V_{C} < V_{B}$.\par
+
+\hfill
+ \parbox{1\linewidth}{
+  \centering
+  \begin{tabular}{|l|l|l|r|}
+    \hline    
+    {\bf Node Voltage} & {\bf Simulation} & {\bf Theoretical } & {\bf Units }\\ \hline
+    \input{op.tex}
+  \label{tab:op_FAR}
+  \end{tabular}
+  }
+\par
+
+Below this text is shown a comparison between the theoretical analysis (right) and the Ngspice simulation (left).\par
+
+
+\hfill
+ \parbox{1\linewidth}{
+  \centering
+  \begin{tabular}{|l|l|l|r|}
+    \hline    
+    {\bf Parameter} & {\bf Simulation} & {\bf Theoretical } & {\bf Units }\\ \hline
+    \input{merit.tex}
+  \label{tab:results}
+  \end{tabular}
+  }
+  
+
+Do note that the upper cutoff frequency here used in the theoretical column was actually obtained from Ngspice: to calculate this frequency in theory, we would need to take into account the parasitic capacitances in the transistor, which proved to be quite more complex and therefore was not used.
+
+
+%In \textbf{Table~\ref{tab:theoretical}} the values for the branch currents and the node voltages obtained from the Octave script for both methods are presented. Here, the node voltages in the mesh method were computed from the respective currents, which were determined as described in the previous subsection.
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.6\linewidth]{gain_octave.pdf}
+\caption{Output voltage gain of the audio amplifier as a function of frequency}
+\label{fig:gain_octa}
+\end{figure}
+
+\par This last figure represents the plot of gain obtained in the theoretical analysis.
+
+
+
+\pagebreak
